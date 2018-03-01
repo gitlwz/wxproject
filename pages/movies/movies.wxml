@@ -1,0 +1,22 @@
+<import src="movie-list/movie-list-template.wxml" />
+<import src="movie-grid/movie-grid-template.wxml" />
+<view class='search'>
+    <icon type="search" class='search-img' size='13' color='#405f80'></icon>
+    <input type='text' placeholder='釜山行，血战钢锯岭' placeholder-class='placeholder' bindfocus="onBindFocus" bindconfirm='onBindConfirm'></input>
+    <image wx:if="{{searchPanelShow}}" src="/images/icon/xx.png" class="xx-img" bindtap="onCancelImgTap"></image>
+</view>
+<view class='container' wx:if="{{containerShow}}">
+    <view class="movies-template">
+        <template is="movieListTemplate" data="{{movies:inTheaters,categoryTitle:'正在热映'}}"></template>
+    </view>
+    <view class="movies-template">
+        <template is="movieListTemplate" data="{{movies:comingSoon,categoryTitle:'即将上映'}}"></template>
+    </view>
+    <view class="movies-template">
+        <template is="movieListTemplate" data="{{movies:top250,categoryTitle:'豆瓣Top250'}}"></template>
+    </view>
+</view>
+
+<view class="search-panel" wx:if="{{searchPanelShow}}">
+    <template is="movieGridTemplate" data="{{movies:searchResult}}" />
+</view>
